@@ -36,7 +36,7 @@ def hist2dc(dframe,country,xcells,ycells,paxes):
     fig, ax = plt.subplots()
     h = ax.hist2d(dyears,dvals,bins=[range(len(xcells)),range(len(ycells))])
     if paxes == 0:
-        plt.hist2d(dyears,dvals,bins=[range(len(xcells)),range(len(ycells))])
+        plt.hist2d(dyears,dvals,bins=[range(len(xcells)),range(len(ycells))], cmap=plt.get_cmap("Blues"))
         plt.tick_params(
             axis='both',          # changes apply to the x-axis
             which='both',      # both major and minor ticks are affected
