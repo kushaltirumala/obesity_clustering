@@ -101,6 +101,6 @@ ENV/
 .mypy_cache/
 
 *.csv
-test/
-test_OrRd/
-test_ylrd/
+test/*.jpg
+test_OrRd/*.jpg
+test_ylrd/*.jpg
