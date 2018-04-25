@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -10,6 +11,7 @@ xcells = [1, 2, 5, 10, 15, 20, 30, 40]
 ycells = [-0.4, -0.2, -0.1, -0.05, -0.02, -0.01, -0.005, -0.002, -0.001, \
           0, 0.001, 0.002, 0.005, 0.01, 0.02, 0.05, 0.1, 0.2, 0.4]
 
+directory = 'test_OrRd/'
 
 def get_country(odata,country):
     x = odata['location']
@@ -18,7 +20,7 @@ def get_country(odata,country):
         
 #print get_country(odata,'Australia')
 
-def hist2dc(dframe,country,xcells,ycells,paxes):
+def hist2dc(dframe,country,xcells,ycells,paxes, directory):
     cname = get_country(dframe,country)
 #i = 10 # 1st country
     years = list(map(int,odata.dtypes.index[2:]))
@@ -36,7 +38,7 @@ def hist2dc(dframe,country,xcells,ycells,paxes):
     fig, ax = plt.subplots()
     h = ax.hist2d(dyears,dvals,bins=[range(len(xcells)),range(len(ycells))])
     if paxes == 0:
-        plt.hist2d(dyears,dvals,bins=[range(len(xcells)),range(len(ycells))], cmap=plt.get_cmap("Blues"))
+        plt.hist2d(dyears,dvals,bins=[range(len(xcells)),range(len(ycells))], cmap=plt.get_cmap("OrRd"))
         plt.tick_params(
             axis='both',          # changes apply to the x-axis
             which='both',      # both major and minor ticks are affected
@@ -53,13 +55,16 @@ def hist2dc(dframe,country,xcells,ycells,paxes):
         plt.xticks(range(len(xcells)),xcells)
         plt.yticks(range(len(ycells)),ycells)
 
-    plt.savefig('test/' + country + '2.jpg')
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+    plt.savefig(directory + country + '2.jpg')
 
 
-hist2dc(odata,'Hungary',xcells,ycells,1) 
+# hist2dc(odata,'Hungary',xcells,ycells,1) 
 
 for country in odata['location']:
-    hist2dc(odata,country,xcells,ycells,0)
+    print("Creating image for: " + country)
+    hist2dc(odata,country,xcells,ycells,0, directory)
 
 
 
