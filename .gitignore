@@ -104,3 +104,4 @@ ENV/
 test/
 test_OrRd/
 test_ylrd/
+test_binary/

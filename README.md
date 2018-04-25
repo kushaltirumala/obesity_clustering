@@ -38,3 +38,15 @@ items per cluster : number of such clusters
 20 : 2
 45 : 1
 56 : 1
+
+### binary
+2 : 4
+3 : 4
+5 : 1
+6 : 3
+7 : 1
+8 : 2
+9 : 1
+13 : 1
+42 : 1
+87 : 1
