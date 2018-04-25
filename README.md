@@ -1,19 +1,19 @@
 # obesity_clustering
+items per cluster : number of such clusters
 
 ### normal
-2 : 6
-3 : 1
-4 : 2
-5 : 1
-10 : 1
-11 : 1
-12 : 1
-15 : 1
-26 : 1
-115 : 1
+2 : 6<br />
+3 : 1<br />
+4 : 2<br />
+5 : 1<br />
+10 : 1<br />
+11 : 1<br />
+12 : 1<br />
+15 : 1<br />
+26 : 1<br />
+115 : 1<br />
 
 ### yl to orange to red 
-items per cluster : number of such clusters
 2 : 8
 3 : 6
 4 : 1
