@@ -237,6 +237,6 @@ def main(imagedir, sim=0.5):
         print("clustering ...")
         make_links(cluster(fps, sim), pj(imagedir, ic_base_dir, 'clusters'))
 
-main('test_PiYG/', sim=0.6)
+main('test_Paired/', sim=0.6)
 
 

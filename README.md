@@ -62,3 +62,13 @@ items per cluster : number of such clusters
 41 : 1<br />
 60 : 1<br />
 62 : 1<br />
+
+### Paired (qualititave color map)
+2 : 1<br />
+6 : 2<br />
+9 : 2<br />
+10 : 2<br />
+12 : 1<br />
+14 : 1<br />
+27 : 1<br />
+117 : 1<br />
