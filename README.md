@@ -72,3 +72,16 @@ items per cluster : number of such clusters
 14 : 1<br />
 27 : 1<br />
 117 : 1<br />
+
+
+### Paired (PuBuGn)
+2 : 3<br />
+3 : 1<br />
+4 : 2<br />
+5 : 2<br />
+6 : 1<br />
+7 : 1<br />
+8 : 1<br />
+18 : 2<br />
+45 : 1<br />
+86 : 1<br />

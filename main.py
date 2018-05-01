@@ -11,7 +11,7 @@ xcells = [1, 2, 5, 10, 15, 20, 30, 40]
 ycells = [-0.4, -0.2, -0.1, -0.05, -0.02, -0.01, -0.005, -0.002, -0.001, \
           0, 0.001, 0.002, 0.005, 0.01, 0.02, 0.05, 0.1, 0.2, 0.4]
 
-directory = 'test_Paired/'
+directory = 'test_PuBuGn/'
 
 def get_country(odata,country):
     x = odata['location']
@@ -38,7 +38,7 @@ def hist2dc(dframe,country,xcells,ycells,paxes, directory):
     fig, ax = plt.subplots()
     h = ax.hist2d(dyears,dvals,bins=[range(len(xcells)),range(len(ycells))])
     if paxes == 0:
-        plt.hist2d(dyears,dvals,bins=[range(len(xcells)),range(len(ycells))], cmap=plt.get_cmap("Paired"))
+        plt.hist2d(dyears,dvals,bins=[range(len(xcells)),range(len(ycells))], cmap=plt.get_cmap("PuBuGn"))
         plt.tick_params(
             axis='both',          # changes apply to the x-axis
             which='both',      # both major and minor ticks are affected
