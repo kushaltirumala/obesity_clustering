@@ -50,3 +50,15 @@ items per cluster : number of such clusters
 13 : 1<br />
 42 : 1<br />
 87 : 1<br />
+
+### PiYG (divergent color map)
+2 : 4<br/>
+3 : 2<br />
+4 : 2<br />
+6 : 1<br />
+8 : 1<br />
+9 : 1<br />
+13 : 1<br />
+41 : 1<br />
+60 : 1<br />
+62 : 1<br />
