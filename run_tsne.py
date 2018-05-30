@@ -4,6 +4,7 @@ import numpy as np
 import pandas as pd
 import imageio
 import os
+import matplotlib
 import matplotlib.pyplot as plt
 from matplotlib.pyplot import cm
 import matplotlib.mlab as mlab
@@ -11,6 +12,7 @@ from matplotlib.ticker import NullFormatter
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib.offsetbox import OffsetImage, AnnotationBbox
 from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_samples
 
 # trying to compare the tsne with pca
 # will also compare runtimes
@@ -46,7 +48,7 @@ def plot_images(embeddings, arr, plot_images=False, save_name=None, show_image=T
         if plot_images == True:
             for i, (x, y) in enumerate(zip(xx, yy)):
                 print("CREATING IMAGES FOR " + str(i))
-                im = OffsetImage(imageio.imread(arr[i]), zoom=0.03)
+                im = OffsetImage(imageio.imread(arr[i]), zoom=0.025)
                 im.set_height(3)
                 im.set_width(3)
                 ab = AnnotationBbox(im, (x, y), xycoords='data', frameon=False)
@@ -55,11 +57,13 @@ def plot_images(embeddings, arr, plot_images=False, save_name=None, show_image=T
             ax.autoscale()
 
         # plot the 2D data points
-        for i in range(embeddings.shape[0]):
-            print("PLOTTING " + str(i))
-            ax.scatter(xx[i], yy[i], c=pred, s=50)
+        # for i in range(embeddings.shape[0]):
+        #     print("PLOTTING " + str(i))
+        #     colors = ['red','green','blue','purple']
+        #     ax.scatter(xx[i], yy[i], c=pred, cmap=matplotlib.colors.ListedColormap(colors))
+        ax.scatter(embeddings[:, 0], embeddings[:, 1], c=pred)
 
-        if centers:
+        if centers is not None and centers.any():
             ax.scatter(centers[:, 0], centers[:, 1], c='black', s=200, alpha=0.5)
 
 
@@ -73,9 +77,17 @@ def plot_images(embeddings, arr, plot_images=False, save_name=None, show_image=T
         if show_image:
             plt.show()
 
-# def k_means(embeddings):
+def save_output(names, clusters):
+    f = open('main.out', 'w')
+    names = [t.split('2')[0].split('/')[1] for t in names]
+    for i, name in enumerate(names):
+        f.write("%s in cluster: %d\n" % (name, clusters[i]))
 
+    f.close()
 
+# def run_k_means_metrics(data):
+#     for i in range(20):
+        
 
 
 tsne = TSNE(n_components=2, verbose=1, perplexity=40, n_iter=300)
@@ -83,13 +95,15 @@ data, arr = load_data("test/")
 embeddings = tsne.fit_transform(data, arr)
 
 # plot the initial embeddings
-plot_images(embeddings, arr, plot_images=True, save_name="plots/pre_clustering_plot_0.03_no_images.png", show_image=False)
+plot_images(embeddings, arr, plot_images=True, save_name="plots/pre_clustering_plot_6_images.png", show_image=False)
 
 # k-means example
 kmeans = KMeans(n_clusters=4)
 kmeans.fit(embeddings)
 y_kmeans = kmeans.predict(embeddings)
 centers = kmeans.cluster_centers_
-plot_images(embeddings, arr, plot_images=True, save_name="plots/pre_clustering_plot_kmeans_4_images.png", show_image=True, pred=y_kmeans, centers=centers)
+plot_images(embeddings, arr, plot_images=False, save_name="plots/clustering_plot_kmeans_6_images.png", show_image=True, pred=y_kmeans, centers=centers)
+
+save_output(arr, y_kmeans)
 
 
