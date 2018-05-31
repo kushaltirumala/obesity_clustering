@@ -95,15 +95,16 @@ data, arr = load_data("test/")
 embeddings = tsne.fit_transform(data, arr)
 
 # plot the initial embeddings
-plot_images(embeddings, arr, plot_images=True, save_name="plots/pre_clustering_plot_6_images.png", show_image=False)
+plot_images(embeddings, arr, plot_images=True, save_name="plots/pre_clustering_plot_7_images.png", show_image=False)
 
 # k-means example
-kmeans = KMeans(n_clusters=4)
+kmeans = KMeans(n_clusters=8)
 kmeans.fit(embeddings)
 y_kmeans = kmeans.predict(embeddings)
 centers = kmeans.cluster_centers_
-plot_images(embeddings, arr, plot_images=False, save_name="plots/clustering_plot_kmeans_6_images.png", show_image=True, pred=y_kmeans, centers=centers)
+plot_images(embeddings, arr, plot_images=False, save_name="plots/clustering_plot_kmeans_7_images.png", show_image=True, pred=y_kmeans, centers=centers)
 
+# save output
 save_output(arr, y_kmeans)
 
 
