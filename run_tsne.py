@@ -1,6 +1,7 @@
 import sklearn
 from sklearn.manifold import TSNE
 import numpy as np
+import sys
 import pandas as pd
 import imageio
 import os
@@ -89,22 +90,28 @@ def save_output(names, clusters):
 #     for i in range(20):
         
 
-
-tsne = TSNE(n_components=2, verbose=1, perplexity=40, n_iter=300)
+# perplexity = int(sys.argv[1])
+# n_iter = int(sys.argv[2])
 data, arr = load_data("test/")
-embeddings = tsne.fit_transform(data, arr)
+
+for perplexity in range(10, 40, 10):
+    for n_iter in range(1000, 10000, 1000):
+        tsne = TSNE(n_components=2, verbose=1, perplexity=perplexity, n_iter=n_iter)
+
+        embeddings = tsne.fit_transform(data, arr)
 
 # plot the initial embeddings
-plot_images(embeddings, arr, plot_images=True, save_name="plots/pre_clustering_plot_7_images.png", show_image=False)
+        plot_images(embeddings, arr, plot_images=True, save_name="stabilize_experiments/" + str(perplexity)+"_"+str(n_iter)+"_with_images.png", show_image=False)
+        plot_images(embeddings, arr, plot_images=False, save_name="stabilize_experiments/" + str(perplexity)+"_"+str(n_iter)+"_without_images.png", show_image=False)
 
 # k-means example
-kmeans = KMeans(n_clusters=8)
-kmeans.fit(embeddings)
-y_kmeans = kmeans.predict(embeddings)
-centers = kmeans.cluster_centers_
-plot_images(embeddings, arr, plot_images=False, save_name="plots/clustering_plot_kmeans_7_images.png", show_image=True, pred=y_kmeans, centers=centers)
+# kmeans = KMeans(n_clusters=8)
+# kmeans.fit(embeddings)
+# y_kmeans = kmeans.predict(embeddings)
+# centers = kmeans.cluster_centers_
+# plot_images(embeddings, arr, plot_images=False, save_name="plots/clustering_plot_kmeans_8_images.png", show_image=True, pred=y_kmeans, centers=centers)
 
-# save output
-save_output(arr, y_kmeans)
+# # save output
+# save_output(arr, y_kmeans)
 
 
